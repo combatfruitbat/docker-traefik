@@ -27,7 +27,7 @@ services:
       - DEFAULT_ACTION=auth
       - DEFAULT_PROVIDER=google
     secrets:
-      - source: traefik_forward_auth
+      - source: oauth_secrets
         target: /config
     labels:
       - "traefik.enable=true"

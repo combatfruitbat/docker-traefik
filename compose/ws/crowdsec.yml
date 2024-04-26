@@ -10,12 +10,14 @@ services:
     networks:
       - t2_proxy
     ports:
-      - "$CROWDSEC_API_PORT:8080"
-      - "$ZEROTIER_IP_WEBSERVER:$CROWDSEC_PROMETHEUS_EXPORT:6060" # If you don't use ZeroTier remove use just $CROWDSEC_PROMETHEUS_EXPORT:6060
+      - "8080:8080"
+      #- "CROWDSEC_API_PORT:8080"
+      #- "$ZEROTIER_IP_WEBSERVER:$CROWDSEC_PROMETHEUS_EXPORT:6060" # If you don't use ZeroTier remove use just $CROWDSEC_PROMETHEUS_EXPORT:6060
+      - "6060:6060"
     environment:
       COLLECTIONS: "crowdsecurity/traefik crowdsecurity/http-cve crowdsecurity/whitelist-good-actors crowdsecurity/iptables crowdsecurity/linux crowdsecurity/nginx crowdsecurity/discord-crawler-whitelist crowdsecurity/sshd crowdsecurity/wordpress"
       GID: "${GID-1000}"
-      CUSTOM_HOSTNAME: dSHB
+      #CUSTOM_HOSTNAME: WS
     volumes:
       - $DOCKERDIR/logs/ws:/logs/ws:ro
       - /var/log:/var/log:ro
